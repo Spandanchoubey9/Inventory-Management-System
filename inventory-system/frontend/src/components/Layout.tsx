@@ -19,10 +19,10 @@ const Layout = (): JSX.Element => {
   const user = useAuthStore((state) => state.user)
 
   return (
-    <div className="min-h-screen flex bg-slate-50 text-slate-900">
-      <aside className="w-72 shrink-0 bg-white border-r border-slate-200 px-6 py-8">
+    <div className="min-h-screen flex bg-gradient-to-br from-cyan-50 via-slate-50 to-indigo-50 text-slate-900">
+      <aside className="w-72 shrink-0 border-r border-slate-200 bg-white/90 px-6 py-8 backdrop-blur">
         <div className="mb-10">
-          <div className="text-2xl font-semibold tracking-tight">Inventory</div>
+          <div className="bg-gradient-to-r from-cyan-600 to-indigo-600 bg-clip-text text-2xl font-bold tracking-tight text-transparent">Inventory</div>
           <p className="mt-2 text-sm text-slate-500">Fast, reliable stock management for your team.</p>
         </div>
         <nav className="space-y-2">
@@ -33,7 +33,7 @@ const Layout = (): JSX.Element => {
                 key={item.path}
                 to={item.path}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 rounded-2xl px-4 py-3 text-sm transition ${isActive ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'}`
+                  `flex items-center gap-3 rounded-2xl px-4 py-3 text-sm transition-all ${isActive ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`
                 }
               >
                 <Icon className="h-4 w-4" />
@@ -44,7 +44,7 @@ const Layout = (): JSX.Element => {
         </nav>
       </aside>
       <div className="flex-1 p-6">
-        <header className="mb-6 flex flex-col gap-4 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+        <header className="mb-6 flex flex-col gap-4 rounded-3xl border border-slate-200 bg-white/90 p-5 shadow-sm backdrop-blur sm:flex-row sm:items-center sm:justify-between">
           <div>
             <div className="text-3xl font-semibold tracking-tight">Inventory Dashboard</div>
             <p className="mt-2 text-sm text-slate-500">Manage products, suppliers, categories, and transactions from one polished workspace.</p>

@@ -26,3 +26,18 @@ export const createProduct = async (payload: ProductPayload) => {
   const response = await api.post('/api/v1/products', payload)
   return response.data.data
 }
+
+export const getProduct = async (id: string) => {
+  const response = await api.get(`/api/v1/products/${id}`)
+  return response.data.data
+}
+
+export const updateProduct = async ({ id, payload }: { id: string; payload: Partial<ProductPayload> }) => {
+  const response = await api.patch(`/api/v1/products/${id}`, payload)
+  return response.data.data
+}
+
+export const deleteProduct = async (id: string) => {
+  const response = await api.delete(`/api/v1/products/${id}`)
+  return response.data.data
+}

@@ -27,3 +27,26 @@ export interface Product {
   imageUrl?: string
   isActive: boolean
 }
+
+export interface Supplier {
+  id: string
+  name: string
+  email?: string
+  phone?: string
+  address?: string
+}
+
+export interface Category {
+  id: string
+  name: string
+  slug?: string
+}
+
+export interface Transaction {
+  id: string
+  productId: string
+  type: 'STOCK_IN' | 'STOCK_OUT' | 'ADJUSTMENT' | 'RETURN'
+  quantity: number
+  note?: string
+  createdAt: string
+}

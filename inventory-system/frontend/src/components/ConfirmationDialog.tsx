@@ -20,7 +20,7 @@ const ConfirmationDialog = ({
   onCancel
 }: ConfirmationDialogProps): JSX.Element => {
   if (!open) {
-    return null
+    return <></>
   }
 
   return (
