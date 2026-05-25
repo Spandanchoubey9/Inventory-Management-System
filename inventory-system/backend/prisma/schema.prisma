@@ -1,0 +1,126 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                 String         @id @default(uuid())
+  name               String
+  email              String         @unique
+  passwordHash       String
+  role               String         @default("STAFF")
+  isActive           Boolean        @default(true)
+  failedLoginAttempts Int           @default(0)
+  lockedUntil        DateTime?
+  createdAt          DateTime       @default(now())
+  updatedAt          DateTime       @updatedAt
+  deletedAt          DateTime?
+  refreshTokens      RefreshToken[]
+  transactions       Transaction[]  @relation("userTransactions")
+  auditLogs          AuditLog[]     @relation("userAuditLogs")
+  notifications      Notification[]
+}
+
+model Category {
+  id        String      @id @default(uuid())
+  name      String
+  slug      String      @unique
+  parentId  String?
+  parent    Category?   @relation("CategoryChildren", fields: [parentId], references: [id])
+  children  Category[]  @relation("CategoryChildren")
+  products  Product[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  deletedAt DateTime?
+}
+
+model Supplier {
+  id        String           @id @default(uuid())
+  name      String
+  email     String?
+  phone     String?
+  address   String?
+  products  ProductSupplier[]
+  createdAt DateTime         @default(now())
+  updatedAt DateTime         @updatedAt
+  deletedAt DateTime?
+}
+
+model Product {
+  id                String           @id @default(uuid())
+  name              String
+  sku               String           @unique
+  description       String?
+  categoryId        String
+  price             Float
+  quantity          Int              @default(0)
+  lowStockThreshold Int              @default(10)
+  imageUrl          String?
+  isActive          Boolean          @default(true)
+  category          Category         @relation(fields: [categoryId], references: [id])
+  suppliers         ProductSupplier[]
+  transactions      Transaction[]
+  createdAt         DateTime         @default(now())
+  updatedAt         DateTime         @updatedAt
+  deletedAt         DateTime?
+}
+
+model ProductSupplier {
+  productId  String
+  supplierId String
+  isPrimary  Boolean  @default(false)
+  product    Product  @relation(fields: [productId], references: [id])
+  supplier   Supplier @relation(fields: [supplierId], references: [id])
+
+  @@id([productId, supplierId])
+}
+
+model Transaction {
+  id          String   @id @default(uuid())
+  productId   String
+  type        String
+  quantity    Int
+  note        String?
+  createdById String
+  createdAt   DateTime @default(now())
+  product     Product  @relation(fields: [productId], references: [id])
+  createdBy   User     @relation("userTransactions", fields: [createdById], references: [id])
+}
+
+model RefreshToken {
+  id         String   @id @default(uuid())
+  userId     String
+  tokenHash  String   @unique
+  expiresAt  DateTime
+  revokedAt  DateTime?
+  createdAt  DateTime @default(now())
+  user       User     @relation(fields: [userId], references: [id])
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String?
+  type      String
+  message   String
+  entityId  String?
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+  user      User?    @relation(fields: [userId], references: [id])
+}
+
+model AuditLog {
+  id         String   @id @default(uuid())
+  action     String
+  entityType String
+  entityId   String
+  actorId    String
+  oldValue   String?
+  newValue   String?
+  ipAddress  String
+  createdAt  DateTime @default(now())
+  actor      User     @relation("userAuditLogs", fields: [actorId], references: [id])
+}

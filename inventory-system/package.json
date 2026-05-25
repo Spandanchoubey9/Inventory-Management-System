@@ -1,0 +1,1 @@
+{"name":"inventory-system","private":true,"workspaces":["backend","frontend"],"scripts":{"build":"npm --workspaces run build"}}
