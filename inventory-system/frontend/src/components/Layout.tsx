@@ -35,10 +35,10 @@ const Layout = (): JSX.Element => {
   }
 
   return (
-    <div className="min-h-screen flex bg-gradient-to-br from-cyan-50 via-slate-50 to-indigo-50 text-slate-900">
-      <aside className="w-72 shrink-0 border-r border-slate-200 bg-white/90 px-6 py-8 backdrop-blur">
+    <div className="min-h-screen flex text-slate-900">
+      <aside className="glass-panel w-72 shrink-0 border-r border-rose-100 px-6 py-8">
         <div className="mb-10">
-          <div className="bg-gradient-to-r from-cyan-600 to-indigo-600 bg-clip-text text-2xl font-bold tracking-tight text-transparent">Inventory</div>
+          <div className="bg-gradient-to-r from-rose-500 via-orange-500 to-cyan-600 bg-clip-text text-2xl font-bold tracking-tight text-transparent">Inventory</div>
           <p className="mt-2 text-sm text-slate-500">Fast, reliable stock management for your team.</p>
         </div>
         <nav className="space-y-2">
@@ -51,7 +51,7 @@ const Layout = (): JSX.Element => {
                 key={item.path}
                 to={item.path}
                 className={({ isActive }) =>
-                  `flex items-center gap-3 rounded-2xl px-4 py-3 text-sm transition-all ${isActive ? 'bg-gradient-to-r from-cyan-600 to-indigo-600 text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`
+                  `flex items-center gap-3 rounded-2xl px-4 py-3 text-sm transition-all ${isActive ? 'bg-gradient-to-r from-pink-500 via-orange-500 to-cyan-600 text-white shadow-sm' : 'text-slate-700 hover:bg-white/70 hover:text-slate-900'}`
                 }
               >
                 <Icon className="h-4 w-4" />
@@ -62,17 +62,17 @@ const Layout = (): JSX.Element => {
         </nav>
       </aside>
       <div className="flex-1 p-6">
-        <header className="mb-6 flex flex-col gap-4 rounded-3xl border border-slate-200 bg-white/90 p-5 shadow-sm backdrop-blur sm:flex-row sm:items-center sm:justify-between">
+        <header className="glass-panel mb-6 flex flex-col gap-4 rounded-3xl border border-white/70 p-5 shadow-sm sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <div className="text-3xl font-semibold tracking-tight">Inventory Dashboard</div>
+            <div className="bg-gradient-to-r from-fuchsia-600 via-rose-500 to-amber-500 bg-clip-text text-3xl font-semibold tracking-tight text-transparent">Inventory Dashboard</div>
             <p className="mt-2 text-sm text-slate-500">Manage products, suppliers, categories, and transactions from one polished workspace.</p>
           </div>
           <div className="flex flex-col gap-2 sm:items-end">
-            <div className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700">
+            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-100 to-rose-100 px-4 py-2 text-sm font-medium text-slate-700">
               <Sparkles className="h-4 w-4" />
               {user ? `Signed in as ${user.name} (${user.role})` : 'Signed out'}
             </div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-slate-50 px-4 py-2 text-sm text-slate-600">
+            <div className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-100 to-indigo-100 px-4 py-2 text-sm text-slate-700">
               <Bell className="h-4 w-4" />
               {unreadCount} notification{unreadCount === 1 ? '' : 's'}
             </div>

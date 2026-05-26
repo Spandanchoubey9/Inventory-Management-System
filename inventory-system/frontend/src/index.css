@@ -2,12 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg-a: #fff1f2;
+  --bg-b: #ecfeff;
+  --bg-c: #eef2ff;
+  --bg-d: #fef9c3;
+  --surface: rgba(255, 255, 255, 0.82);
+}
+
 body {
   margin: 0;
   font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
-  background: #f8fafc;
+  background:
+    radial-gradient(circle at 8% 12%, var(--bg-d) 0%, transparent 28%),
+    radial-gradient(circle at 88% 16%, var(--bg-c) 0%, transparent 32%),
+    radial-gradient(circle at 18% 84%, var(--bg-b) 0%, transparent 36%),
+    radial-gradient(circle at 82% 78%, var(--bg-a) 0%, transparent 34%),
+    linear-gradient(135deg, #f8fafc 0%, #eef2ff 35%, #fff7ed 70%, #ecfeff 100%);
+  color: #0f172a;
 }
 
 #root {
   min-height: 100vh;
+}
+
+.glass-panel {
+  background: var(--surface);
+  backdrop-filter: blur(14px);
 }
