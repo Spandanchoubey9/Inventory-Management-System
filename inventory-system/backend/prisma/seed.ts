@@ -25,42 +25,30 @@ const suppliers = [
 ]
 
 const products = [
-  { name: 'Wireless Mouse', sku: 'ELEC-001', description: 'Ergonomic wireless mouse', price: 24.99, category: 'electronics', lowStockThreshold: 10, quantity: 45 },
-  { name: 'Bluetooth Keyboard', sku: 'ELEC-002', description: 'Low-profile keyboard', price: 39.95, category: 'electronics', lowStockThreshold: 12, quantity: 12 },
-  { name: 'Noise Cancelling Headphones', sku: 'ELEC-003', description: 'Over-ear headphones', price: 89.5, category: 'electronics', lowStockThreshold: 8, quantity: 7 },
-  { name: 'LED Desk Lamp', sku: 'ELEC-004', description: 'Adjustable daylight lamp', price: 18.75, category: 'electronics', lowStockThreshold: 5, quantity: 15 },
-  { name: 'Graphic Tee', sku: 'CLTH-001', description: '100% cotton t-shirt', price: 14.0, category: 'clothing', lowStockThreshold: 20, quantity: 54 },
-  { name: 'Denim Jacket', sku: 'CLTH-002', description: 'Classic fit jacket', price: 59.99, category: 'clothing', lowStockThreshold: 6, quantity: 8 },
-  { name: 'Running Shoes', sku: 'CLTH-003', description: 'Lightweight running sneakers', price: 74.99, category: 'clothing', lowStockThreshold: 10, quantity: 11 },
-  { name: 'Organic Coffee Beans', sku: 'FOOD-001', description: 'Fresh roasted beans', price: 12.5, category: 'food-beverage', lowStockThreshold: 15, quantity: 24 },
-  { name: 'Sparkling Water Pack', sku: 'FOOD-002', description: '12-pack sparkling water', price: 9.95, category: 'food-beverage', lowStockThreshold: 10, quantity: 9 },
-  { name: 'Trail Mix', sku: 'FOOD-003', description: 'Snack-sized trail mix', price: 6.25, category: 'food-beverage', lowStockThreshold: 8, quantity: 19 },
-  { name: 'Hammer', sku: 'TOOL-001', description: '16oz steel hammer', price: 15.9, category: 'tools', lowStockThreshold: 7, quantity: 13 },
-  { name: 'Cordless Drill', sku: 'TOOL-002', description: '18V rechargeable drill', price: 69.99, category: 'tools', lowStockThreshold: 5, quantity: 4 },
-  { name: 'Tape Measure', sku: 'TOOL-003', description: '25ft retractable tape', price: 7.5, category: 'tools', lowStockThreshold: 6, quantity: 10 },
-  { name: 'Office Chair', sku: 'OFFC-001', description: 'Comfortable mesh chair', price: 119.99, category: 'office-supplies', lowStockThreshold: 3, quantity: 2 },
-  { name: 'Notebook Pack', sku: 'OFFC-002', description: 'Set of 5 spiral notebooks', price: 12.5, category: 'office-supplies', lowStockThreshold: 20, quantity: 32 },
-  { name: 'Stapler', sku: 'OFFC-003', description: 'Standard desk stapler', price: 8.5, category: 'office-supplies', lowStockThreshold: 10, quantity: 21 },
-  { name: 'USB-C Cable', sku: 'ELEC-005', description: '2m charging cable', price: 7.99, category: 'electronics', lowStockThreshold: 15, quantity: 14 },
-  { name: 'Sweatshirt', sku: 'CLTH-004', description: 'Pullover hoodie', price: 29.99, category: 'clothing', lowStockThreshold: 10, quantity: 25 },
-  { name: 'Protein Bars', sku: 'FOOD-004', description: 'Pack of 12 bars', price: 19.99, category: 'food-beverage', lowStockThreshold: 12, quantity: 10 },
-  { name: 'Screwdriver Set', sku: 'TOOL-004', description: 'Precision screwdriver kit', price: 21.5, category: 'tools', lowStockThreshold: 8, quantity: 16 },
-  { name: 'Printer Ink', sku: 'OFFC-004', description: 'Black ink cartridge', price: 24.5, category: 'office-supplies', lowStockThreshold: 4, quantity: 6 },
-  { name: 'Portable Charger', sku: 'ELEC-006', description: '10,000mAh power bank', price: 29.95, category: 'electronics', lowStockThreshold: 8, quantity: 9 },
-  { name: 'Cargo Shorts', sku: 'CLTH-005', description: 'Multi-pocket shorts', price: 34.99, category: 'clothing', lowStockThreshold: 8, quantity: 20 },
-  { name: 'Herbal Tea', sku: 'FOOD-005', description: 'Collection of herbal teas', price: 14.99, category: 'food-beverage', lowStockThreshold: 10, quantity: 13 },
-  { name: 'Garden Shears', sku: 'TOOL-005', description: 'Pruning shears', price: 18.25, category: 'tools', lowStockThreshold: 5, quantity: 5 },
-  { name: 'Desk Organizer', sku: 'OFFC-005', description: 'Wood desktop organizer', price: 22.5, category: 'office-supplies', lowStockThreshold: 7, quantity: 11 },
-  { name: 'Wireless Charger', sku: 'ELEC-007', description: 'Qi charging pad', price: 19.99, category: 'electronics', lowStockThreshold: 10, quantity: 8 },
-  { name: 'Sports Cap', sku: 'CLTH-006', description: 'Adjustable baseball cap', price: 12.0, category: 'clothing', lowStockThreshold: 10, quantity: 18 },
-  { name: 'Snack Bars', sku: 'FOOD-006', description: 'Healthy snack bars', price: 8.75, category: 'food-beverage', lowStockThreshold: 9, quantity: 9 },
-  { name: 'Notebook Mouse Pad', sku: 'OFFC-006', description: 'Large mouse pad', price: 11.99, category: 'office-supplies', lowStockThreshold: 10, quantity: 14 }
+  { name: 'Logitech MX Master 3S Mouse', sku: 'ELEC-MX3S', description: 'Wireless productivity mouse with USB receiver', price: 99.99, category: 'electronics', lowStockThreshold: 8, quantity: 22 },
+  { name: 'Keychron K2 Mechanical Keyboard', sku: 'ELEC-K2-V2', description: '75% wireless mechanical keyboard', price: 89.0, category: 'electronics', lowStockThreshold: 6, quantity: 14 },
+  { name: 'Sony WH-1000XM5 Headphones', sku: 'ELEC-XM5', description: 'Noise cancelling Bluetooth over-ear headphones', price: 349.0, category: 'electronics', lowStockThreshold: 4, quantity: 9 },
+  { name: 'Anker 735 GaN Charger', sku: 'ELEC-ANK735', description: '65W USB-C wall charger', price: 59.99, category: 'electronics', lowStockThreshold: 10, quantity: 27 },
+  { name: 'Levi\'s 511 Slim Jeans', sku: 'CLTH-L511', description: 'Men\'s slim fit denim jeans', price: 68.0, category: 'clothing', lowStockThreshold: 7, quantity: 18 },
+  { name: 'Nike Dri-FIT Training Tee', sku: 'CLTH-NKDFT', description: 'Performance training t-shirt', price: 32.0, category: 'clothing', lowStockThreshold: 12, quantity: 35 },
+  { name: 'Adidas Runfalcon 3 Shoes', sku: 'CLTH-ADRF3', description: 'Everyday running shoes', price: 74.0, category: 'clothing', lowStockThreshold: 6, quantity: 16 },
+  { name: 'Puma Essentials Hoodie', sku: 'CLTH-PMHD', description: 'Cotton blend pullover hoodie', price: 55.0, category: 'clothing', lowStockThreshold: 8, quantity: 20 },
+  { name: 'Davidoff Rich Aroma Coffee 200g', sku: 'FOOD-DVCF', description: 'Instant coffee jar', price: 12.99, category: 'food-beverage', lowStockThreshold: 10, quantity: 26 },
+  { name: 'Tata Tea Gold 1kg', sku: 'FOOD-TTG1K', description: 'Premium loose leaf tea', price: 8.99, category: 'food-beverage', lowStockThreshold: 9, quantity: 21 },
+  { name: 'Bisleri Mineral Water 12x1L', sku: 'FOOD-BIS12', description: 'Case of 12 one-liter bottles', price: 6.5, category: 'food-beverage', lowStockThreshold: 15, quantity: 40 },
+  { name: 'Kellogg\'s Muesli Fruit Nut 750g', sku: 'FOOD-KLGM', description: 'Breakfast cereal pack', price: 7.25, category: 'food-beverage', lowStockThreshold: 8, quantity: 19 },
+  { name: 'Bosch GSB 500W Impact Drill', sku: 'TOOL-BSH500', description: 'Corded impact drill for metal and wood', price: 79.0, category: 'tools', lowStockThreshold: 5, quantity: 11 },
+  { name: 'Stanley Claw Hammer 16oz', sku: 'TOOL-STN16', description: 'Forged steel claw hammer', price: 18.5, category: 'tools', lowStockThreshold: 8, quantity: 24 },
+  { name: 'Taparia Screwdriver Set 8pc', sku: 'TOOL-TPR8', description: 'Mixed flat and Phillips set', price: 14.75, category: 'tools', lowStockThreshold: 7, quantity: 17 },
+  { name: 'Black+Decker Tape Measure 5m', sku: 'TOOL-BD5M', description: 'Compact locking tape measure', price: 6.99, category: 'tools', lowStockThreshold: 12, quantity: 30 },
+  { name: 'HP 802 Black Ink Cartridge', sku: 'OFFC-HP802B', description: 'Original black ink cartridge', price: 18.0, category: 'office-supplies', lowStockThreshold: 6, quantity: 13 },
+  { name: 'Classmate Spiral Notebook A4', sku: 'OFFC-CLSA4', description: 'Single subject 300-page notebook', price: 3.25, category: 'office-supplies', lowStockThreshold: 20, quantity: 52 },
+  { name: 'Cello Butterflow Ball Pens 10-pack', sku: 'OFFC-CLLP10', description: 'Blue ink smooth ball pens', price: 4.5, category: 'office-supplies', lowStockThreshold: 18, quantity: 60 },
+  { name: 'Godrej Interio Motion Chair', sku: 'OFFC-GDJCH', description: 'Ergonomic office chair with lumbar support', price: 149.0, category: 'office-supplies', lowStockThreshold: 3, quantity: 7 }
 ]
 
 const users = [
-  { name: 'Admin User', email: 'admin@inventory.com', password: 'Admin@1234', role: 'ADMIN' },
-  { name: 'Staff One', email: 'staff1@inventory.com', password: 'Staff@1234', role: 'STAFF' },
-  { name: 'Staff Two', email: 'staff2@inventory.com', password: 'Staff@1234', role: 'STAFF' }
+  { name: 'Spandan Choubey', email: 'spandanchoubey@gmail.com', password: 'Admin@1234', role: 'ADMIN' }
 ]
 
 const main = async (): Promise<void> => {
@@ -112,47 +100,39 @@ const main = async (): Promise<void> => {
   const adminId = createdUsers[0].id
 
   for (const product of productRecords) {
+    await prisma.product.update({ where: { id: product.id }, data: { quantity: product.quantity } })
+  }
+
+  const sampleTransactions = [
+    { index: 0, type: 'STOCK_IN', quantity: 12, note: 'Vendor replenishment from Apex Supplies - PO #APX-2041' },
+    { index: 2, type: 'STOCK_OUT', quantity: 3, note: 'Issued to creative team for client video editing bays' },
+    { index: 8, type: 'ADJUSTMENT', quantity: 2, note: 'Stock count correction after aisle audit' },
+    { index: 12, type: 'STOCK_IN', quantity: 6, note: 'Restocked tools for maintenance workshop' },
+    { index: 19, type: 'STOCK_OUT', quantity: 1, note: 'Allocated to new branch manager workstation setup' }
+  ] as const
+
+  for (const item of sampleTransactions) {
+    const product = productRecords[item.index]
+    if (!product) {
+      continue
+    }
+
     await prisma.$transaction(async (tx) => {
       await tx.transaction.create({
         data: {
           productId: product.id,
-          type: 'STOCK_IN',
-          quantity: product.quantity,
+          type: item.type,
+          quantity: item.quantity,
+          note: item.note,
           createdById: adminId
         }
       })
-      await tx.product.update({ where: { id: product.id }, data: { quantity: product.quantity } })
-    }, { isolationLevel: 'Serializable' })
-  }
 
-  const stockOuts = productRecords.slice(0, 15)
-  for (const item of stockOuts) {
-    const amount = Math.min(3, Math.max(1, Math.floor(item.quantity / 4)))
-    await prisma.$transaction(async (tx) => {
-      await tx.transaction.create({
-        data: {
-          productId: item.id,
-          type: 'STOCK_OUT',
-          quantity: amount,
-          createdById: adminId
-        }
-      })
-      await tx.product.update({ where: { id: item.id }, data: { quantity: Math.max(0, item.quantity - amount) } })
-    }, { isolationLevel: 'Serializable' })
-  }
+      const nextQuantity = item.type === 'STOCK_OUT'
+        ? Math.max(0, product.quantity - item.quantity)
+        : product.quantity + item.quantity
 
-  const adjustments = productRecords.slice(15, 20)
-  for (const item of adjustments) {
-    await prisma.$transaction(async (tx) => {
-      await tx.transaction.create({
-        data: {
-          productId: item.id,
-          type: 'ADJUSTMENT',
-          quantity: 2,
-          createdById: adminId
-        }
-      })
-      await tx.product.update({ where: { id: item.id }, data: { quantity: item.quantity + 2 } })
+      await tx.product.update({ where: { id: product.id }, data: { quantity: nextQuantity } })
     }, { isolationLevel: 'Serializable' })
   }
 
