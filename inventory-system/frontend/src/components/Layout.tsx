@@ -2,6 +2,8 @@ import { NavLink, Outlet } from 'react-router-dom'
 import { Bell, Home, Box, DollarSign, Users, Layers, Settings, FileText, Sparkles } from 'lucide-react'
 import { useNotificationStore } from '../store/notificationStore'
 import { useAuthStore } from '../store/authStore'
+import { logoutRequest } from '../api/auth.api'
+import { useAuth } from '../hooks/useAuth'
 import Toast from './Toast'
 
 const navItems = [
@@ -10,13 +12,27 @@ const navItems = [
   { label: 'Transactions', path: '/transactions', icon: DollarSign },
   { label: 'Suppliers', path: '/suppliers', icon: Users },
   { label: 'Categories', path: '/categories', icon: Layers },
-  { label: 'Audit Logs', path: '/audit-logs', icon: FileText },
+  { label: 'Audit Logs', path: '/audit-logs', icon: FileText, adminOnly: true },
   { label: 'Settings', path: '/settings', icon: Settings }
 ]
 
 const Layout = (): JSX.Element => {
   const unreadCount = useNotificationStore((state) => state.unreadCount)
   const user = useAuthStore((state) => state.user)
+  const refreshToken = useAuthStore((state) => state.refreshToken)
+  const { logout } = useAuth()
+
+  const handleSignOut = async (): Promise<void> => {
+    try {
+      if (refreshToken) {
+        await logoutRequest(refreshToken)
+      }
+    } catch {
+      // We still clear local session if remote token revoke fails.
+    } finally {
+      logout()
+    }
+  }
 
   return (
     <div className="min-h-screen flex bg-gradient-to-br from-cyan-50 via-slate-50 to-indigo-50 text-slate-900">
@@ -26,7 +42,9 @@ const Layout = (): JSX.Element => {
           <p className="mt-2 text-sm text-slate-500">Fast, reliable stock management for your team.</p>
         </div>
         <nav className="space-y-2">
-          {navItems.map((item) => {
+          {navItems
+            .filter((item) => !item.adminOnly || user?.role === 'ADMIN')
+            .map((item) => {
             const Icon = item.icon
             return (
               <NavLink
@@ -40,7 +58,7 @@ const Layout = (): JSX.Element => {
                 {item.label}
               </NavLink>
             )
-          })}
+            })}
         </nav>
       </aside>
       <div className="flex-1 p-6">
@@ -58,6 +76,15 @@ const Layout = (): JSX.Element => {
               <Bell className="h-4 w-4" />
               {unreadCount} notification{unreadCount === 1 ? '' : 's'}
             </div>
+            {user && (
+              <button
+                type="button"
+                onClick={handleSignOut}
+                className="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"
+              >
+                Sign out
+              </button>
+            )}
           </div>
         </header>
         <Outlet />
