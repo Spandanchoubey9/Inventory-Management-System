@@ -33,7 +33,10 @@ const LoginPage = (): JSX.Element => {
   const form = useForm<{ email: string; password: string }>({ resolver: zodResolver(loginSchema) })
 
   const onSubmit = async (data: { email: string; password: string }): Promise<void> => {
-    const result = await loginRequest(data)
+    const result = await loginRequest({
+      email: data.email.trim().toLowerCase(),
+      password: data.password
+    })
     setAuth(result.user, result.accessToken, result.refreshToken)
     navigate('/')
   }

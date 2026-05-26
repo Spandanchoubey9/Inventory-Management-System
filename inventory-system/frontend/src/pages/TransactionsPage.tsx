@@ -5,6 +5,7 @@ import TransactionForm from '../features/transactions/TransactionForm'
 import TransactionTable from '../features/transactions/TransactionTable'
 import Modal from '../components/Modal'
 import { useToastStore } from '../store/toastStore'
+import { useUserPreferences } from '../hooks/useUserPreferences'
 
 const TransactionsPage = (): JSX.Element => {
   const [page, setPage] = useState(1)
@@ -12,6 +13,7 @@ const TransactionsPage = (): JSX.Element => {
   const [filter, setFilter] = useState('ALL')
   const [activeId, setActiveId] = useState<string | null>(null)
   const addToast = useToastStore((s) => s.addToast)
+  const { formatCurrency, currency } = useUserPreferences()
   const { data } = useQuery({ queryKey: ['transactions', { page }], queryFn: fetchTransactions })
   const { data: activeTx } = useQuery({
     queryKey: ['transaction', activeId],
@@ -38,7 +40,7 @@ const TransactionsPage = (): JSX.Element => {
           <button onClick={() => setOpen(true)} className="rounded-lg bg-gradient-to-r from-cyan-600 to-indigo-600 px-4 py-2 text-white">New Transaction</button>
         </div>
       </div>
-      <TransactionTable transactions={transactions} onView={setActiveId} />
+      <TransactionTable transactions={transactions} formatCurrency={formatCurrency} onView={setActiveId} />
       <div className="flex justify-end gap-2">
         <button disabled={page <= 1} onClick={() => setPage((p) => Math.max(1, p - 1))} className="rounded-lg border px-3 py-1.5 disabled:opacity-50">Prev</button>
         <button onClick={() => setPage((p) => p + 1)} className="rounded-lg border px-3 py-1.5">Next</button>
@@ -49,6 +51,7 @@ const TransactionsPage = (): JSX.Element => {
           <div className="space-y-2 text-sm">
             <p><span className="font-semibold">Type:</span> {activeTx.type}</p>
             <p><span className="font-semibold">Quantity:</span> {activeTx.quantity}</p>
+            <p><span className="font-semibold">Estimated Value ({currency}):</span> {formatCurrency((activeTx as any).product?.price ? (activeTx as any).product.price * activeTx.quantity : 0)}</p>
             <p><span className="font-semibold">Product ID:</span> {activeTx.productId}</p>
             <p><span className="font-semibold">Note:</span> {activeTx.note ?? '-'}</p>
             <p className="text-xs text-slate-500">Edit/Delete are not available for transactions in current backend permissions.</p>

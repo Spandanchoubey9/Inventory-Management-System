@@ -4,6 +4,7 @@ import StatsCard from '../features/dashboard/StatsCard'
 import LowStockBanner from '../features/dashboard/LowStockBanner'
 import { fetchProducts } from '../api/products.api'
 import { fetchTransactions } from '../api/transactions.api'
+import { fetchCategories } from '../api/categories.api'
 import { BarChart3, PieChart as PieChartIcon, TrendingUp } from 'lucide-react'
 import { BarChart, Bar, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, Legend } from 'recharts'
 
@@ -12,8 +13,10 @@ const DashboardPage = (): JSX.Element => {
   const { data: analytics } = useQuery({ queryKey: ['dashboard-analytics', { window: '30d' }], queryFn: () => fetchAnalytics('30d') })
   const { data: productsRes } = useQuery({ queryKey: ['products', { page: 1, search: '' }], queryFn: fetchProducts })
   const { data: transactionsRes } = useQuery({ queryKey: ['transactions', { page: 1 }], queryFn: fetchTransactions })
+  const { data: categoriesRes } = useQuery({ queryKey: ['categories'], queryFn: fetchCategories })
 
   const products = productsRes?.data ?? []
+  const categories = categoriesRes ?? []
   const transactions = transactionsRes?.data ?? []
   const colors = ['#0ea5e9', '#22c55e', '#f59e0b', '#8b5cf6', '#ef4444', '#14b8a6']
 
@@ -22,7 +25,11 @@ const DashboardPage = (): JSX.Element => {
     acc[item.categoryId] = (acc[item.categoryId] ?? 0) + 1
     return acc
   }, {})
-  const categoryDistribution = Object.entries(categoryBuckets).map(([category, total]) => ({ category: category.slice(0, 8), total }))
+  const categoryNames = categories.reduce<Record<string, string>>((acc, item) => {
+    acc[item.id] = item.name
+    return acc
+  }, {})
+  const categoryDistribution = Object.entries(categoryBuckets).map(([categoryId, total]) => ({ category: categoryNames[categoryId] ?? 'Uncategorized', total }))
   const transactionTrend = transactions
     .slice()
     .reverse()
@@ -57,7 +64,7 @@ const DashboardPage = (): JSX.Element => {
           <div className="h-72">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
-                <Pie data={categoryDistribution} dataKey="total" nameKey="category" outerRadius={92} label>
+                <Pie data={categoryDistribution} dataKey="total" nameKey="category" outerRadius={92} label={false}>
                   {categoryDistribution.map((entry, index) => <Cell key={entry.category} fill={colors[index % colors.length]} />)}
                 </Pie>
                 <Tooltip />

@@ -4,6 +4,12 @@ import { BrowserRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import App from './App'
 import './index.css'
+import { getAuthStore } from './store/authStore'
+
+const existingUser = getAuthStore().user
+const themeKey = `inventory-theme:${existingUser?.id ?? 'guest'}`
+const initialTheme = localStorage.getItem(themeKey) === 'dark' ? 'dark' : 'light'
+document.documentElement.classList.toggle('dark', initialTheme === 'dark')
 
 const queryClient = new QueryClient({
   defaultOptions: {

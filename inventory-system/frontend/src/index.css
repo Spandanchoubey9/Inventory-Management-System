@@ -30,3 +30,16 @@ body {
   background: var(--surface);
   backdrop-filter: blur(14px);
 }
+
+.dark body {
+  background:
+    radial-gradient(circle at 12% 10%, rgba(8, 47, 73, 0.6) 0%, transparent 30%),
+    radial-gradient(circle at 84% 18%, rgba(49, 46, 129, 0.5) 0%, transparent 34%),
+    radial-gradient(circle at 18% 82%, rgba(76, 29, 149, 0.35) 0%, transparent 36%),
+    linear-gradient(145deg, #020617 0%, #0b1736 45%, #1e1b4b 100%);
+  color: #e2e8f0;
+}
+
+.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.8);
+}
