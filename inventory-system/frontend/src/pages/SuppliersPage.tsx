@@ -28,10 +28,10 @@ const SuppliersPage = (): JSX.Element => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-        <h1 className="text-xl font-semibold">Suppliers</h1>
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-blue-800/70 dark:bg-blue-950/70">
+        <h1 className="text-xl font-semibold text-slate-900 dark:text-blue-100">Suppliers</h1>
         <div className="flex gap-2">
-          <input value={search} onChange={(e) => { setSearch(e.target.value); setPage(1) }} placeholder="Search supplier" className="rounded-lg border px-3 py-2" />
+          <input value={search} onChange={(e) => { setSearch(e.target.value); setPage(1) }} placeholder="Search supplier" className="rounded-lg border px-3 py-2 dark:border-blue-700 dark:bg-blue-900/60" />
           <button disabled={!canManage} onClick={() => setOpen(true)} className="rounded-lg bg-gradient-to-r from-cyan-600 to-indigo-600 px-4 py-2 text-white disabled:opacity-50">Add Supplier</button>
         </div>
       </div>

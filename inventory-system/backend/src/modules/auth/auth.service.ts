@@ -116,7 +116,8 @@ export const signInWithGoogle = async (credential: string): Promise<{ user: Auth
 }
 
 export const register = async (name: string, email: string, password: string): Promise<{ user: AuthUser; accessToken: string; refreshToken: string }> => {
-  const existing = await prisma.user.findUnique({ where: { email } })
+  const normalizedEmail = email.trim().toLowerCase()
+  const existing = await prisma.user.findUnique({ where: { email: normalizedEmail } })
 
   if (existing) {
     throw new AppError('AUTH_EMAIL_IN_USE', 409, 'Email is already registered')
@@ -126,7 +127,7 @@ export const register = async (name: string, email: string, password: string): P
   const user = await prisma.user.create({
     data: {
       name,
-      email,
+      email: normalizedEmail,
       passwordHash,
       role: 'STAFF'
     }
@@ -147,7 +148,8 @@ export const register = async (name: string, email: string, password: string): P
 }
 
 export const login = async (email: string, password: string): Promise<{ user: AuthUser; accessToken: string; refreshToken: string }> => {
-  const user = await prisma.user.findUnique({ where: { email } })
+  const normalizedEmail = email.trim().toLowerCase()
+  const user = await prisma.user.findUnique({ where: { email: normalizedEmail } })
 
   if (!user) {
     throw new AppError('AUTH_INVALID_CREDENTIALS', 401, 'Invalid email or password')

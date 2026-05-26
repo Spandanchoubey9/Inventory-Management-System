@@ -43,3 +43,16 @@ body {
 .dark .glass-panel {
   background: rgba(15, 23, 42, 0.8);
 }
+
+.dark input,
+.dark select,
+.dark textarea {
+  color: #bfdbfe;
+  caret-color: #60a5fa;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #93c5fd;
+  opacity: 1;
+}

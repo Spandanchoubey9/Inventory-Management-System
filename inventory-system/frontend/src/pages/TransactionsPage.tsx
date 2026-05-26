@@ -27,10 +27,10 @@ const TransactionsPage = (): JSX.Element => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-        <h1 className="text-xl font-semibold">Transactions</h1>
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-blue-800/70 dark:bg-blue-950/70">
+        <h1 className="text-xl font-semibold text-slate-900 dark:text-blue-100">Transactions</h1>
         <div className="flex items-center gap-2">
-          <select value={filter} onChange={(e) => setFilter(e.target.value)} className="rounded-lg border px-3 py-2">
+          <select value={filter} onChange={(e) => setFilter(e.target.value)} className="rounded-lg border px-3 py-2 dark:border-blue-700 dark:bg-blue-900/60">
             <option value="ALL">All Types</option>
             <option value="STOCK_IN">Stock In</option>
             <option value="STOCK_OUT">Stock Out</option>

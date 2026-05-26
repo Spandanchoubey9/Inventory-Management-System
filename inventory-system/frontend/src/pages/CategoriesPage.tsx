@@ -23,10 +23,10 @@ const CategoriesPage = (): JSX.Element => {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm">
-        <h1 className="text-xl font-semibold">Categories</h1>
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-blue-800/70 dark:bg-blue-950/70">
+        <h1 className="text-xl font-semibold text-slate-900 dark:text-blue-100">Categories</h1>
         <div className="flex gap-2">
-          <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search category" className="rounded-lg border px-3 py-2" />
+          <input value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Search category" className="rounded-lg border px-3 py-2 dark:border-blue-700 dark:bg-blue-900/60" />
           <button disabled={!canManage} onClick={() => setOpen(true)} className="rounded-lg bg-gradient-to-r from-cyan-600 to-indigo-600 px-4 py-2 text-white disabled:opacity-50">Add Category</button>
         </div>
       </div>
@@ -40,7 +40,7 @@ const CategoriesPage = (): JSX.Element => {
       <Modal title={canManage ? 'View / Edit Category' : 'View Category'} open={activeId !== null} onClose={() => setActiveId(null)}>
         {active && (
           <div className="space-y-3">
-            <p className="text-sm text-slate-500">Category ID: {active.id}</p>
+            <p className="text-sm text-slate-500 dark:text-blue-200">Category ID: {active.id}</p>
             <input defaultValue={active.name} onChange={(e) => setName(e.target.value)} disabled={!canManage} className="w-full rounded-lg border px-3 py-2" />
             {canManage && <button onClick={() => updateMutation.mutate({ id: active.id, payload: { name: name || active.name } })} className="rounded-lg bg-slate-900 px-4 py-2 text-white">Update</button>}
           </div>

@@ -27,10 +27,10 @@ const TransactionForm = ({ open, onClose }: TransactionFormProps): JSX.Element |
 
   return (
     <div className="fixed inset-0 z-40 flex items-center justify-center bg-slate-900/50 px-4">
-      <div className="w-full max-w-xl rounded-2xl bg-white p-6 shadow-xl">
+      <div className="w-full max-w-xl rounded-2xl bg-white p-6 shadow-xl dark:bg-blue-950 dark:ring-1 dark:ring-blue-700/60">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold">New Transaction</h2>
-          <button onClick={onClose} className="text-slate-500">Close</button>
+          <h2 className="text-lg font-semibold text-slate-900 dark:text-blue-100">New Transaction</h2>
+          <button onClick={onClose} className="text-slate-500 dark:text-blue-200">Close</button>
         </div>
         <form className="space-y-4" onSubmit={form.handleSubmit(async (data) => {
           try {
@@ -41,12 +41,12 @@ const TransactionForm = ({ open, onClose }: TransactionFormProps): JSX.Element |
           }
         })}>
           <div>
-            <label className="block text-sm text-slate-700">Product ID</label>
-            <input className="mt-1 w-full rounded-lg border px-3 py-2" {...form.register('productId')} />
+            <label className="block text-sm text-slate-700 dark:text-blue-100">Product ID</label>
+            <input className="mt-1 w-full rounded-lg border px-3 py-2 dark:border-blue-700 dark:bg-blue-900/60" {...form.register('productId')} />
           </div>
           <div>
-            <label className="block text-sm text-slate-700">Type</label>
-            <select className="mt-1 w-full rounded-lg border px-3 py-2" {...form.register('type')}>
+            <label className="block text-sm text-slate-700 dark:text-blue-100">Type</label>
+            <select className="mt-1 w-full rounded-lg border px-3 py-2 dark:border-blue-700 dark:bg-blue-900/60" {...form.register('type')}>
               <option value="STOCK_IN">Stock In</option>
               <option value="STOCK_OUT">Stock Out</option>
               <option value="ADJUSTMENT">Adjustment</option>
