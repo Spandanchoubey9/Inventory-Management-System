@@ -54,30 +54,30 @@ const ProductForm = ({ open, onClose }: ProductFormProps): JSX.Element | null =>
 
   return (
     <div className="fixed inset-0 z-40 flex items-center justify-center bg-slate-900/50 px-4">
-      <div className="w-full max-w-xl rounded-2xl bg-white p-6 shadow-xl">
+      <div className="w-full max-w-xl rounded-2xl bg-white p-6 shadow-xl dark:bg-blue-950 dark:ring-1 dark:ring-blue-700/60">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-lg font-semibold">New Product</h2>
-          <button onClick={onClose} className="text-slate-500">Close</button>
+          <h2 className="text-lg font-semibold dark:text-blue-100">New Product</h2>
+          <button onClick={onClose} className="text-slate-500 dark:text-blue-200">Close</button>
         </div>
         <form className="space-y-4" onSubmit={form.handleSubmit(handleSubmit)}>
           <div>
-            <label className="block text-sm text-slate-700">Name</label>
-            <input className="mt-1 w-full rounded-lg border px-3 py-2" {...form.register('name')} />
+            <label className="block text-sm text-slate-700 dark:text-blue-100">Name</label>
+            <input className="mt-1 w-full rounded-lg border px-3 py-2 dark:border-blue-700 dark:bg-blue-900/60 dark:text-blue-50 dark:placeholder:text-blue-200/70" {...form.register('name')} />
             {form.formState.errors.name?.message && (
               <p className="mt-1 text-xs text-red-600">{form.formState.errors.name.message}</p>
             )}
           </div>
           <div>
-            <label className="block text-sm text-slate-700">SKU</label>
-            <input className="mt-1 w-full rounded-lg border px-3 py-2" {...form.register('sku')} />
+            <label className="block text-sm text-slate-700 dark:text-blue-100">SKU</label>
+            <input className="mt-1 w-full rounded-lg border px-3 py-2 dark:border-blue-700 dark:bg-blue-900/60 dark:text-blue-50 dark:placeholder:text-blue-200/70" {...form.register('sku')} />
             {form.formState.errors.sku?.message && (
               <p className="mt-1 text-xs text-red-600">{form.formState.errors.sku.message}</p>
             )}
           </div>
           <div>
-            <label className="block text-sm text-slate-700">Category</label>
+            <label className="block text-sm text-slate-700 dark:text-blue-100">Category</label>
             <select
-              className="mt-1 w-full rounded-lg border px-3 py-2"
+              className="mt-1 w-full rounded-lg border px-3 py-2 dark:border-blue-700 dark:bg-blue-900/60 dark:text-blue-50"
               {...form.register('categoryId')}
               disabled={isLoading}
             >
@@ -93,11 +93,11 @@ const ProductForm = ({ open, onClose }: ProductFormProps): JSX.Element | null =>
             )}
           </div>
           <div>
-            <label className="block text-sm text-slate-700">Price</label>
+            <label className="block text-sm text-slate-700 dark:text-blue-100">Price</label>
             <input
               type="number"
               step="0.01"
-              className="mt-1 w-full rounded-lg border px-3 py-2"
+              className="mt-1 w-full rounded-lg border px-3 py-2 dark:border-blue-700 dark:bg-blue-900/60 dark:text-blue-50 dark:placeholder:text-blue-200/70"
               {...form.register('price', { valueAsNumber: true })}
             />
             {form.formState.errors.price?.message && (
@@ -105,10 +105,10 @@ const ProductForm = ({ open, onClose }: ProductFormProps): JSX.Element | null =>
             )}
           </div>
           <div>
-            <label className="block text-sm text-slate-700">Low stock threshold</label>
+            <label className="block text-sm text-slate-700 dark:text-blue-100">Low stock threshold</label>
             <input
               type="number"
-              className="mt-1 w-full rounded-lg border px-3 py-2"
+              className="mt-1 w-full rounded-lg border px-3 py-2 dark:border-blue-700 dark:bg-blue-900/60 dark:text-blue-50 dark:placeholder:text-blue-200/70"
               {...form.register('lowStockThreshold', { valueAsNumber: true })}
             />
             {form.formState.errors.lowStockThreshold?.message && (
@@ -116,25 +116,25 @@ const ProductForm = ({ open, onClose }: ProductFormProps): JSX.Element | null =>
             )}
           </div>
           <div>
-            <label className="block text-sm text-slate-700">Image URL</label>
-            <input className="mt-1 w-full rounded-lg border px-3 py-2" {...form.register('imageUrl')} />
+            <label className="block text-sm text-slate-700 dark:text-blue-100">Image URL</label>
+            <input className="mt-1 w-full rounded-lg border px-3 py-2 dark:border-blue-700 dark:bg-blue-900/60 dark:text-blue-50 dark:placeholder:text-blue-200/70" {...form.register('imageUrl')} />
             {form.formState.errors.imageUrl?.message && (
               <p className="mt-1 text-xs text-red-600">{form.formState.errors.imageUrl.message}</p>
             )}
           </div>
           <div>
-            <label className="block text-sm text-slate-700">Description</label>
-            <textarea className="mt-1 w-full rounded-lg border px-3 py-2" {...form.register('description')} rows={3} />
+            <label className="block text-sm text-slate-700 dark:text-blue-100">Description</label>
+            <textarea className="mt-1 w-full rounded-lg border px-3 py-2 dark:border-blue-700 dark:bg-blue-900/60 dark:text-blue-50 dark:placeholder:text-blue-200/70" {...form.register('description')} rows={3} />
             {form.formState.errors.description?.message && (
               <p className="mt-1 text-xs text-red-600">{form.formState.errors.description.message}</p>
             )}
           </div>
           {formError && <p className="text-sm text-red-600">{formError}</p>}
           <div className="flex items-center justify-between gap-3">
-            <button type="button" onClick={onClose} className="rounded-lg border px-4 py-2 text-slate-700">
+            <button type="button" onClick={onClose} className="rounded-lg border px-4 py-2 text-slate-700 dark:border-blue-600 dark:bg-blue-900/50 dark:text-blue-100">
               Cancel
             </button>
-            <button type="submit" className="rounded-lg bg-slate-900 px-4 py-2 text-white">{submitText}</button>
+            <button type="submit" className="rounded-lg bg-slate-900 px-4 py-2 text-white dark:bg-blue-600 dark:hover:bg-blue-500">{submitText}</button>
           </div>
         </form>
       </div>
